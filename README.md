@@ -1,26 +1,15 @@
-# Kinetik-7
-#Armbot with 7 motors, 2 step motors and 5 servomotors controled by a Raspberry pi Zero 2W and Arduino Mega2560, the project have two sensors modules, a strain gauge and infra-red optical sensor.
-#this project use a power supply with 24VDC 16.6A, have two DC-DC Converter, four fuse, 19 leds, PID control.
-#The Raspberry Pi Zero 2W is responsible for the entire system in the robotic arm. The Mega2560 handles sending PWM signals to the motors, but it operates as a slave while the Raspberry Pi acts as the master UART
+## 🛠️ Advanced Engineering Features
 
-def move_servo(servo_id, angle):
-    command = f"S,{servo_id},{angle}"
-    return send_command(command)
+### 🔍 Smart Optical System
+* **Dynamic Autofocus:** Real-time distance measurement using ToF sensors to drive a NEMA 8 stepper, achieving perfect focus for macro photography.
+* **Elasticity Compensation Algorithm:** Custom software correction for belt-driven actuators, mitigating non-linear mechanical errors in custom-made transmissions.
 
-def move_stepper(stepper_id, steps, direction):
-    command = f"M,{stepper_id},{steps},{direction}"
-    return send_command(command)
+### 🧠 Computer Vision Pipeline
+* **Hierarchical Scanning:** 720p Sweep Mode for ROI (Region of Interest) detection and 4K Analysis Mode for micro-inspection.
+* **Multiclass AI Model:** Custom dataset trained to identify components, read serial numbers (OCR), and detect soldering defects (cracks, bridges, or missing solder).
 
-def get_distance():
-    return send_command("D")
-
-def get_force():
-    return send_command("F")
-
-print(move_servo(1, 90))  # Mueve el servo 1 a 90°
-print(move_stepper(1, 200, 1))  # Mueve el motor paso a paso 1, 200 pasos adelante
-print("Distancia:", get_distance())  # Muestra la distancia medida
-print("Fuerza:", get_force())  # Muestra la fuerza medida por la galga
-
-arduino.close()
+### ⚙️ Hardware Architecture
+* **Main Controller:** STM32F4 (Handling IK and real-time motion).
+* **Distributed Sensing:** ESP32U via UART for joint telemetry (AS5600 encoders).
+* **Driver Stage:** Hybrid setup with TB6600, DRV8825, and TMC2130 for silent, high-precision movement.
 
